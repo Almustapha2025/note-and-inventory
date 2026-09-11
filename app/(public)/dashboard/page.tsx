@@ -110,7 +110,7 @@ const Dashboard = async () => {
                     return (
                       <div key={index} className="p-2 bg-gray-100 flex gap-2 justify-between items-center rounded-sm m-4">
                         <div className={`flex gap-1 pl-1 items-center rounded-sm `}>
-                          <div className={`w-3 h-3 rounded-full ml-1  ${stocklevel === 0
+                          <div className={`w-3 h-3 rounded-full ml-1 pr-2 ${stocklevel === 0
                             ? 'bg-red-500'
                             : stocklevel === 1
                               ? 'bg-yellow-500'

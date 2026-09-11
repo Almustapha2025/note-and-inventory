@@ -10,7 +10,7 @@ import React from 'react'
 
 const Product = async () => {
   const u = await auth()
-  console.log(u.userId)
+  // console.log(u.userId)
   if(!u.userId) redirect("/sign-in")
   return (
 <>

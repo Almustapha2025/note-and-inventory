@@ -8,7 +8,7 @@ import { Button } from "@base-ui/react/button";
 export default async function Home() {
   
     const record = await getUser()
-    console.log(record);
+    // console.log(record);
   return (
    <>
       <div className="min-h-screen flex flex-col justify-center items-center mx-auto text-4xl">
