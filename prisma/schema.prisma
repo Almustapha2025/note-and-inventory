@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model user {
+  id        Int      @id @default(autoincrement())
+  firstname String
+  lastname  String
+  validated Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  todo      todo[]
+}
+
+model note {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  clerkId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model todo {
+  id        Int      @id @default(autoincrement())
+  title     String
+  completed Boolean
+  userId    Int
+  user      user     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tag tag[]
+}
+
+model tag {
+  id        Int      @id @default(autoincrement())
+  name      String
+  todoId    Int
+  todo      todo     @relation(fields: [todoId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  quantity  Decimal @db.Decimal()
+  price     Decimal @db.Money
+  lowstock  Decimal @db.Decimal()
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  clerkId   String  
+}
+
+model Parent {
+  id        Int      @id @default(autoincrement())
+  firstname String
+  surname   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  child     Child[]
+}
+
+model Child {
+  id        Int      @id @default(autoincrement())
+  name      String
+  parentId  Int
+  parent    Parent   @relation(fields: [parentId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
